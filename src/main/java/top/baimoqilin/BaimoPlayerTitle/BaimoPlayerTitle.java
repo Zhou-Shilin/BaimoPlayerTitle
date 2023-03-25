@@ -3,12 +3,15 @@ package top.baimoqilin.BaimoPlayerTitle;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.event.EventHandler;
+import cn.nukkit.event.Listener;
+import cn.nukkit.event.player.PlayerChatEvent;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 
 import java.util.HashMap;
 
-public class BaimoPlayerTitle extends PluginBase {
+public class BaimoPlayerTitle extends PluginBase implements Listener {
 
     private Config config;
     private HashMap<String, String> playerTitles = new HashMap<>();
@@ -18,6 +21,7 @@ public class BaimoPlayerTitle extends PluginBase {
         this.saveDefaultConfig();
         this.config = this.getConfig();
         this.playerTitles = (HashMap<String, String>) this.config.get("playerTitles", new HashMap<String, String>());
+        this.getServer().getPluginManager().registerEvents(this, this);
     }
 
     @Override
@@ -209,5 +213,14 @@ public class BaimoPlayerTitle extends PluginBase {
             }
         }
         return false;
+    }
+
+    @EventHandler
+    public void onPlayerChat(PlayerChatEvent event) {
+        Player player = event.getPlayer();
+        String playerTitle = this.playerTitles.get(player.getName());
+        if (playerTitle != null) {
+            event.setFormat("<" + player.getName() + " " + playerTitle + "> " + event.getMessage());
+        }
     }
 }
