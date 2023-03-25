@@ -1,0 +1,9 @@
+name: BaimoPlayerTitle
+version: 1.0.2
+author: BaimoQilin
+api: [1.0.0, 2.0.0]
+main: top.baimoqilin.BaimoPlayerTitle.BaimoPlayerTitle
+commands:
+  pt:
+    description: Allows players to manage their custom titles.
+    usage: /pt <add|give|delete|strip|switch|remove|deprive|list>
