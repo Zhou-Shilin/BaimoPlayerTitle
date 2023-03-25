@@ -1,0 +1,5 @@
+name: BaimoPlayerTitle
+version: 1.0.1
+author: BaimoQilin
+api: [1.0.0, 2.0.0]
+main: top.baimoqilin.BaimoPlayerTitle.BaimoPlayerTitle
